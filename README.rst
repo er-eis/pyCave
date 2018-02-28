@@ -1,7 +1,7 @@
 ************
 Introduction
 ************
-**pyCave** is an open-source, text-based adventure game where players must find a cursed treasure in a cave. Pits within the cave must be avoided! All material is under the MIT License.
+**pyCave** is an open-source, text-based adventure game where players must find a cursed treasure in a cave. Pits within the cave must be avoided! All code written in this repository is under the MIT License, but the licenses of imported libraries (such as Numpy) may be under a different license.
 
 ******************
 Launching The Game
