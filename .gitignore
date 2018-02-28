@@ -1,0 +1,4 @@
+__pycache__/*
+.vscode/*
+build/*
+grid/__pycache__/*
