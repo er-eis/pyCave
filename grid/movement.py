@@ -2,13 +2,14 @@ from . import tools
 from os import system
 
 
-def prompt():
+def prompt(selections):
     while(True):
         selection = input('Which will you select?\n')
-        if(selection == '1' or selection == '2' or selection == '3' or selection == '4'):
+        if(selection in selections):
             break
         else:
-            print('Please enter a valid selection (either 1, 2, 3, or 4).')
+            print('Please enter a valid selection (either: ' + 
+                  ', '.join(selections) + ').')
     return selection
 
 def performMove(grid, x, y, selection):
