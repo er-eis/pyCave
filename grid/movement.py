@@ -42,18 +42,17 @@ def move(grid, x, y, selection): # player's current x,y coordinates
             return 'S'
         else:
             return grid[y+1][x]
-    if(x == 0):  # '4' was selected
-        return 'S'
-    return grid[y][x-1]
+    if(selection == '4'):
+        if(x == 0):
+            return 'S'
+        return grid[y][x-1]
+    return grid[y][x]
 
 def validMove(grid, x, y, selection, desiredmove):
-    if (desiredmove == ''):
-        newlocation = moveOpen(x, y, selection)
-    else:
-        templocation = moveOpen(x, y, selection)
-        x = templocation.get('x')
-        y = templocation.get('y')
+    if (selection == '5'):       
         newlocation = tools.findStreamEnd(grid, x, y, desiredmove)
+    else:
+        newlocation = moveOpen(x, y, selection)  
     return newlocation
 
 def moveOpen(x, y, selection):
@@ -74,14 +73,14 @@ def moveOpen(x, y, selection):
 #tile types: open (''), pit ('P'), stream ('1', '2', etc), treasure ('T'), stone ('S')
 def tileMessage(char):
     if (char == 'S'):
-        return 'You hit a stone wall as you attempt to move to the '
+        return 'You hit a stone wall which blocks your path as you attempt to move '
     if (char == ''):
-        return 'You move to the '
+        return 'You move '
     if (char == 'P'):
-        return 'You fall into a pit as you move to the '
+        return 'You fall into a pit as you move '
     if (char == 'T'):
-        return 'You find the treasure as you move to the '
-    return 'You feel the rush of a stream as you move to the '
+        return 'You find the treasure as you move '
+    return 'You feel the rush of a stream as you move '
 
 def surroundingMessage(char):
     if (char == 'S' or char == ''):
@@ -94,15 +93,21 @@ def surroundingMessage(char):
 
 def cardinalMessage(selection):
     if (selection == '1'):
-        return 'North.'
+        return 'to the North.'
     if (selection == '2'):
-        return 'East.'
+        return 'to the East.'
     if (selection == '3'):
-        return 'South.'
-    return 'West.'
+        return 'to the South.'
+    if (selection == '4'):
+        return 'to the West.'
+    else:
+        return 'into the water\'s path, following its direction.'
 
-def printMovements():
-    print('Move in a direction:\n1-North\n2-East\n3-South\n4-West')
+def printMovements(movements):
+    if (len(movements) == 4):
+        print('Move in a direction:\n1-North\n2-East\n3-South\n4-West')
+    else:
+        print('Move in a direction:\n1-North\n2-East\n3-South\n4-West\n5-Follow the stream')
 
 def printSurroundings(grid, x, y):
     messageorder = tools.randomArray(4)
@@ -110,3 +115,17 @@ def printSurroundings(grid, x, y):
     for i in range(len(messageorder)):
         if (surroundingMessage(move(grid, x, y, str(messageorder[i]))) is not None):
             print(surroundingMessage(move(grid, x, y, str(messageorder[i]))))
+    if(grid[y][x] != ''):
+        print('You feel water rushing past you where you stand.')
+
+def movementOptions(grid, x, y):
+    if (grid[y][x] == ''):
+        return ['1',
+                '2',
+                '3',
+                '4']
+    return ['1',
+            '2',
+            '3',
+            '4',
+            '5']

@@ -1,6 +1,7 @@
 from grid import gridbuild
 from grid import tools
 from grid import movement
+from messages import strings
 from os import system
 
 while (True):
@@ -10,9 +11,9 @@ while (True):
     print('Welcome to pyCave! Find the cursed treasure inside the cave and avoid the pits.')
     print('Make selections by typing the associated number and pressing Enter.')
     print('Enter your difficulty:\n1-Easy\n2-Medium\n3-Hard\n4-Very Hard')
-    difficulty = int(movement.prompt())
+    difficulty = int(movement.prompt(strings.difficulties()))
     print('Enter the cave size:\n1-Small\n2-Medium\n3-Large\n4-Huge')
-    length = int(movement.prompt()) + 4
+    length = int(movement.prompt(strings.caveSizes())) + 4
 
     grid = gridbuild.generateGrid(length, difficulty)
     coords = gridbuild.findPlayerPosition(grid)
@@ -28,11 +29,12 @@ while (True):
     while(not dead):
         ## FOR DEBUG PURPOSES
         ## Will show current game state
-        # tools.debugShowState(grid, x, y)
+        #tools.debugShowState(grid, x, y)
 
         movement.printSurroundings(grid, x, y)
-        movement.printMovements()
-        selection = movement.prompt()
+        movementoptions = movement.movementOptions(grid, x, y)
+        movement.printMovements(movementoptions)
+        selection = movement.prompt(movementoptions)
         system('cls')
         newlocation = movement.performMove(grid, x, y, selection)
         x = newlocation.get('x')
