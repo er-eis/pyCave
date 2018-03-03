@@ -2,7 +2,7 @@ import random as ran
 
 
 def xyTuple(xmax, ymax):
-    return {'x': ran.randint(0, xmax - 1), 
+    return {'x': ran.randint(0, xmax - 1),
             'y': ran.randint(0, ymax - 1)}
 
 def findStreamEnd(grid, x, y, stream):

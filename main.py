@@ -1,5 +1,4 @@
 from grid import gridbuild
-from grid import tools
 from grid import movement
 from messages import strings
 from os import system
@@ -29,7 +28,7 @@ while (True):
     while(not dead):
         ## FOR DEBUG PURPOSES
         ## Will show current game state
-        #tools.debugShowState(grid, x, y)
+        tools.debugShowState(grid, x, y)
 
         movement.printSurroundings(grid, x, y)
         movementoptions = movement.movementOptions(grid, x, y)
@@ -41,16 +40,16 @@ while (True):
         y = newlocation.get('y')
         if (x == -1 and y == -1):
             dead = True
-    
-    quit = False
+
+    wantquit = False
     while(True):
         newgame = input('The game is over! Would you like to play again?\n1-Yes\n2-No\n')
         if(newgame == '1'):
             break
         if(newgame == '2'):
-            quit = True
+            wantquit = True
             break
         else:
             print('Please make a valid selection (either 1 or 2)')
-    if (quit):
+    if (wantquit):
         break

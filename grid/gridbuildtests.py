@@ -1,6 +1,5 @@
 import numpy
 from . import gridbuild
-import nose.tools
 
 
 def testGridUserStoneTrappedFailValidation():
@@ -86,4 +85,4 @@ def testGridUserTrappedWithStreamSuccessValidation():
 def testGenerateGridEveryOptionSuccessValidation():
     for i in range(4):
         for j in range(4):
-            assert(type(gridbuild.generateGrid(i + 5, j))) == type(numpy.zeros((1,1), str))
+            assert(isinstance(gridbuild.generateGrid(i + 5, j))) == isinstance(numpy.zeros((1,1), str))

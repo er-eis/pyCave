@@ -1,6 +1,5 @@
 import numpy
 from . import movement
-import nose.tools
 
 ## TEST GRID
 ## 1	S	''

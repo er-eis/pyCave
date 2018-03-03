@@ -36,7 +36,6 @@ def fillGrid(grid, difficulty):
 
 def placeTiles(grid, number, ch):
     length = len(grid)
-    
     if (ch == '1'):
         while(number):
             coords = tools.xyTuple(length, length)
@@ -75,7 +74,7 @@ def validateGridHelper(grid, x, y, explored, unexplored):
     if (currenttile != 'S' and currenttile != 'P'):
         if (y != 0):
             north = {'y': y-1, 'x': x}
-            if (north not in explored and 
+            if (north not in explored and
                 north not in unexplored):
                 unexplored.append(north)
         if (x != length - 1):
@@ -101,8 +100,8 @@ def validateGridHelper(grid, x, y, explored, unexplored):
 
     explored.append({'y': y, 'x': x})
     if (len(unexplored) != 0):
-        next = unexplored.pop()
-        return (False or validateGridHelper(grid, next.get('x'), next.get('y'), explored, unexplored))
+        checknext = unexplored.pop()
+        return (False or validateGridHelper(grid, checknext.get('x'), checknext.get('y'), explored, unexplored))
     return False
 
 def findPlayerPosition(grid):

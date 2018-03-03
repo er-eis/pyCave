@@ -1,5 +1,4 @@
 from . import tools
-from os import system
 
 
 def prompt(selections):
@@ -8,7 +7,7 @@ def prompt(selections):
         if(selection in selections):
             break
         else:
-            print('Please enter a valid selection (either: ' + 
+            print('Please enter a valid selection (either: ' +
                   ', '.join(selections) + ').')
     return selection
 
@@ -49,10 +48,10 @@ def move(grid, x, y, selection): # player's current x,y coordinates
     return grid[y][x]
 
 def validMove(grid, x, y, selection, desiredmove):
-    if (selection == '5'):       
+    if (selection == '5'):
         newlocation = tools.findStreamEnd(grid, x, y, desiredmove)
     else:
-        newlocation = moveOpen(x, y, selection)  
+        newlocation = moveOpen(x, y, selection)
     return newlocation
 
 def moveOpen(x, y, selection):
@@ -111,8 +110,7 @@ def printMovements(movements):
 
 def printSurroundings(grid, x, y):
     messageorder = tools.randomArray(4)
-    
-    for i in range(len(messageorder)):
+    for i, _ in enumerate(messageorder):
         if (surroundingMessage(move(grid, x, y, str(messageorder[i]))) is not None):
             print(surroundingMessage(move(grid, x, y, str(messageorder[i]))))
     if(grid[y][x] != ''):
