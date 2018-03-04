@@ -1,4 +1,5 @@
 from . import tools
+from . import movement
 import numpy
 import math
 
@@ -63,10 +64,22 @@ def validateGrid(grid):
     explored = []
     unexplored = []
 
-    return validateGridHelper(grid, x, y, explored, unexplored)
+    return boardWithoutAdjacentEndTiles(grid, x, y) and boardIsPlayable(grid, x, y, explored, unexplored)
 
-# recursive depth-first search of treasure from starting position
-def validateGridHelper(grid, x, y, explored, unexplored):
+def boardWithoutAdjacentEndTiles(grid, x, y):
+    if (movement.move(grid, x, y, '1') in ('T', 'P')):
+        return False
+    if (movement.move(grid, x, y, '2') in ('T', 'P')):
+        return False
+    if (movement.move(grid, x, y, '3') in ('T', 'P')):
+        return False
+    if (movement.move(grid, x, y, '4') in ('T', 'P')):
+        return False
+    return True
+
+# recursive depth-first search of treasure from starting position, ensures 
+# each board can have a game with win-condition
+def boardIsPlayable(grid, x, y, explored, unexplored):
     length = len(grid)
     currenttile = grid[y][x]
     if (currenttile == 'T'):
@@ -101,7 +114,7 @@ def validateGridHelper(grid, x, y, explored, unexplored):
     explored.append({'y': y, 'x': x})
     if (len(unexplored) != 0):
         checknext = unexplored.pop()
-        return (False or validateGridHelper(grid, checknext.get('x'), checknext.get('y'), explored, unexplored))
+        return (False or boardIsPlayable(grid, checknext.get('x'), checknext.get('y'), explored, unexplored))
     return False
 
 def findPlayerPosition(grid):

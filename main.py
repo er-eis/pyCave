@@ -1,5 +1,6 @@
 from grid import gridbuild
 from grid import movement
+from grid import tools
 from messages import strings
 from os import system
 
@@ -28,7 +29,7 @@ while (True):
     while(not dead):
         ## FOR DEBUG PURPOSES
         ## Will show current game state
-        tools.debugShowState(grid, x, y)
+        # tools.debugShowState(grid, x, y)
 
         movement.printSurroundings(grid, x, y)
         movementoptions = movement.movementOptions(grid, x, y)

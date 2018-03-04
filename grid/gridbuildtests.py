@@ -82,7 +82,15 @@ def testGridUserTrappedWithStreamSuccessValidation():
     grid[2][1] = '1'
     assert(gridbuild.validateGrid(grid)) == True
 
+def testGridUserAdjacentToEndStateFailValidation():
+    grid = numpy.zeros((3, 3), str)
+    grid[1][1] = 'U'
+    grid[0][1] = 'T'
+    assert(gridbuild.validateGrid(grid)) == False
+    grid[0][1] = 'P'
+    assert(gridbuild.validateGrid(grid)) == False
+
 def testGenerateGridEveryOptionSuccessValidation():
     for i in range(4):
         for j in range(4):
-            assert(isinstance(gridbuild.generateGrid(i + 5, j))) == isinstance(numpy.zeros((1,1), str))
+            assert(type(gridbuild.generateGrid(i + 5, j))) == type(numpy.zeros((1,1), str))
