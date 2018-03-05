@@ -1,13 +1,14 @@
 from . import tools
+from . import strings
 
 
 def prompt(selections):
     while(True):
-        selection = input('Which will you select?\n')
+        selection = input(strings.selectionprompt)
         if(selection in selections):
             break
         else:
-            print('Please enter a valid selection (either: ' +
+            print(strings.makevalidselection +
                   ', '.join(selections) + ').')
     return selection
 
@@ -72,41 +73,40 @@ def moveOpen(x, y, selection):
 #tile types: open (''), pit ('P'), stream ('1', '2', etc), treasure ('T'), stone ('S')
 def tileMessage(char):
     if (char == 'S'):
-        return 'You hit a stone wall which blocks your path as you attempt to move '
+        return strings.moveintostone
     if (char == ''):
-        return 'You move '
+        return strings.moveintoempty
     if (char == 'P'):
-        return 'You fall into a pit as you move '
+        return strings.moveintopit
     if (char == 'T'):
-        return 'You find the treasure as you move '
-    return 'You feel the rush of a stream as you move '
+        return strings.moveintotreasure
+    return strings.moveintostream
 
 def surroundingMessage(char):
     if (char == 'S' or char == ''):
         return
     if (char == 'P'):
-        return 'You hear an echo coming from the ground.'
+        return strings.surroundingpit
     if (char == 'T'):
-        return 'Your room is illuminated with a faint golden hue.'
-    return 'You hear the sounds of rushing water.'
+        return strings.surroundingtreasure
+    return strings.surroundingstream
 
 def cardinalMessage(selection):
     if (selection == '1'):
-        return 'to the North.'
+        return strings.cardinalnorth
     if (selection == '2'):
-        return 'to the East.'
+        return strings.cardinaleast
     if (selection == '3'):
-        return 'to the South.'
+        return strings.cardinalsouth
     if (selection == '4'):
-        return 'to the West.'
-    else:
-        return 'into the water\'s path, following its direction.'
+        return strings.cardinalwest
+    return strings.cardinalstream
 
 def printMovements(movements):
     if (len(movements) == 4):
-        print('Move in a direction:\n1-North\n2-East\n3-South\n4-West')
+        print(strings.makemoveselectionnormal)
     else:
-        print('Move in a direction:\n1-North\n2-East\n3-South\n4-West\n5-Follow the stream')
+        print(strings.makemoveselectionwithstream)
 
 def printSurroundings(grid, x, y):
     messageorder = tools.randomArray(4)
@@ -114,7 +114,7 @@ def printSurroundings(grid, x, y):
         if (surroundingMessage(move(grid, x, y, str(messageorder[i]))) is not None):
             print(surroundingMessage(move(grid, x, y, str(messageorder[i]))))
     if(grid[y][x] != ''):
-        print('You feel water rushing past you where you stand.')
+        print(strings.wateronuser)
 
 def movementOptions(grid, x, y):
     if (grid[y][x] == ''):

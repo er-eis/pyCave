@@ -1,11 +1,11 @@
 from . import tools
 from . import movement
+from . import strings
 import numpy
 import math
 
 
 def generateGrid(length, difficulty):
-    ## FOR DEBUG PURPOSES
     numberfailed = 0
 
     while (True):
@@ -13,9 +13,7 @@ def generateGrid(length, difficulty):
 
         fillGrid(grid, difficulty)
         if (validateGrid(grid)):
-            ## FOR DEBUG PURPOSES
-            ## To see this statement, comment the system('cls') lines in main.py
-            print('Number of failed map generations: ' + str(numberfailed))
+            print(strings.failedmapgeneration + str(numberfailed))
             return grid
         else:
             numberfailed += 1

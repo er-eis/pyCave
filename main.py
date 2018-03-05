@@ -1,19 +1,18 @@
 from grid import gridbuild
 from grid import movement
 from grid import tools
-from messages import strings
+from grid import strings
+from messages import options
 from os import system
+import config
 
 while (True):
-    ## COMMENT OUT FOR DEBUG, SEE generateGrid IN gribuild.py
-    system('cls')
-    ## COMMENT OUT FOR DEBUG, SEE generateGrid IN gribuild.py
-    print('Welcome to pyCave! Find the cursed treasure inside the cave and avoid the pits.')
-    print('Make selections by typing the associated number and pressing Enter.')
-    print('Enter your difficulty:\n1-Easy\n2-Medium\n3-Hard\n4-Very Hard')
-    difficulty = int(movement.prompt(strings.difficulties()))
-    print('Enter the cave size:\n1-Small\n2-Medium\n3-Large\n4-Huge')
-    length = int(movement.prompt(strings.caveSizes())) + 4
+    if (config.DEBUG == False):
+        system('cls')
+    print(strings.gamestart)
+    difficulty = int(movement.prompt(options.difficulties()))
+    print(strings.cavesizes)
+    length = int(movement.prompt(options.caveSizes())) + 4
 
     grid = gridbuild.generateGrid(length, difficulty)
     coords = gridbuild.findPlayerPosition(grid)
@@ -21,15 +20,13 @@ while (True):
     y = coords.get('y')
     grid[y][x] = ''
 
-    ## COMMENT OUT FOR DEBUG, SEE generateGrid IN gribuild.py
-    system('cls')
-    ## COMMENT OUT FOR DEBUG, SEE generateGrid IN gribuild.py
-    print('You awake inside a pitch-black cave, but are aware of cardinal directions...')
+    if (config.DEBUG == False):
+        system('cls')
+    print(strings.caveawake)
     dead = False
     while(not dead):
-        ## FOR DEBUG PURPOSES
-        ## Will show current game state
-        # tools.debugShowState(grid, x, y)
+        if (config.DEBUG == True):
+            tools.debugShowState(grid, x, y)
 
         movement.printSurroundings(grid, x, y)
         movementoptions = movement.movementOptions(grid, x, y)
@@ -44,13 +41,13 @@ while (True):
 
     wantquit = False
     while(True):
-        newgame = input('The game is over! Would you like to play again?\n1-Yes\n2-No\n')
+        newgame = input(strings.gameover)
         if(newgame == '1'):
             break
         if(newgame == '2'):
             wantquit = True
             break
         else:
-            print('Please make a valid selection (either 1 or 2)')
+            print(strings.gameoverselection)
     if (wantquit):
         break

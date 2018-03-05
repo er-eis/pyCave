@@ -1,4 +1,5 @@
 import random as ran
+from . import strings
 
 
 def xyTuple(xmax, ymax):
@@ -25,6 +26,6 @@ def randomArray(size):
 def debugShowState(grid, x, y):
     originaltile = grid[y][x]
     grid[y][x] = 'U'
-    print('MANUAL DEBUG ON')
+    print(strings.debugmessage)
     print(grid)
     grid[y][x] = originaltile
