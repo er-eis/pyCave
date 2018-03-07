@@ -2,3 +2,5 @@ __pycache__/*
 .vscode/*
 build/*
 grid/__pycache__/*
+messages/__pycache__/*
+tests/__pycache__/*

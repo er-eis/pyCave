@@ -1,5 +1,8 @@
+import os, sys
+sys.path.append(os.getcwd())
+
 import numpy
-from . import movement
+from grid import movement
 
 ## TEST GRID
 ## 1	S	''

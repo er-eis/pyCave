@@ -1,5 +1,8 @@
+import os, sys
+sys.path.append(os.getcwd())
+
 import numpy
-from . import gridbuild
+from grid import gridbuild
 
 
 def testGridUserStoneTrappedFailValidation():

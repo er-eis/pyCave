@@ -10,7 +10,7 @@ The player occupies one tile on an ``NxN`` grid (if debug mode is turned on, the
 
 .. image:: https://i.imgur.com/89fxgTL.png
 
-The game board is not displayed visually during play, but instead described to the player by text statements. These text statements will tell the player clues about what is happening in the tiles directly above, to the right, down, and to the left of the player's current position. The order of these text statements are randomized each time so the player can't easily deduce where and what each tile is. The player must use logical deduction to conclude where tiles are based on these messages.
+The game board is not displayed visually during play, but instead described to the player by text statements. These text statements will tell the player clues about what is happening in the tiles directly above, to the right, beneath, and to the left of the player's current position. The order of these text statements are randomized each time so the player can't easily deduce where and what each tile is. The player must use logical deduction to conclude where tiles are based on these messages.
 
 Board Tiles
 ------------------
@@ -22,7 +22,7 @@ The grid is composed of several tile types:
 - ``'1'``, ``'2'``, ``'3'``, etc => Stream
 - ``'S'`` => Stone
 
-The player's goal is to move onto the Treasure treasure tile which will cause them to win the game. There will be only one Treasure tile per map. The player will lose the game once they have moved onto a Pit tile. Stone tiles will prevent any movement onto them. Open tiles will allow movement onto them.
+The player's goal is to move onto the Treasure tile, which will cause them to win the game. There will be only one Treasure tile per map. The player will lose the game once they have moved onto a Pit tile. Stone tiles will prevent any movement onto them. Open tiles will allow movement onto them.
 
 Stream tiles are represented by sequential numbers on the board starting at 1. For any given Stream tile, there will be an additional Stream tile with the same number. Stream tiles will act as an Open tile with the additional option of following the stream, thus transporting the player to the other Stream tile with the same number. Thus, if a user is standing at Stream tile ``'1'`` at position (0,0) and the other ``'1'`` tile is at position (2,1), they would be transported to position (2,1) if they chose to follow the stream.
 
@@ -38,7 +38,7 @@ Run `main.py` within the parent folder of the project with python.
 **********************
 Procedural Generation
 **********************
-Each game board is procedurally generated using the difficulty and map size entered by the user. More non-Open tiles will be present at higher difficulties. Each game board is validated through a recursive, depth-first searching algorithm (beginning from the player's starting position and ending once the Treasure tile is found using valid moves), along with other algorithms, after generation to ensure the following qualities:
+Each game board is procedurally generated using the difficulty and map size entered by the user. More non-Open tiles will be present at higher difficulties. Each game board is validated through a recursive, depth-first searching algorithm, along with other algorithms, after generation to ensure the following qualities:
 
 - The game is winnable using valid moves
 - The player does not spawn to the left, to the right, above, or beneath a Pit or Treasure tile
