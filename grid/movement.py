@@ -1,5 +1,5 @@
 from . import tools
-from . import strings
+from messages import strings
 
 
 def prompt(selections):

@@ -1,14 +1,13 @@
-from grid import gridbuild
-from grid import movement
-from grid import tools
-from grid import strings
-from messages import options
-from os import system
+import os, sys
+sys.path.append(os.getcwd())
+
+from grid import gridbuild, movement, tools
+from messages import strings, options
 import config
 
 while (True):
     if (config.DEBUG == False):
-        system('cls')
+        os.system('cls')
     print(strings.gamestart)
     difficulty = int(movement.prompt(options.difficulties()))
     print(strings.cavesizes)
@@ -21,7 +20,7 @@ while (True):
     grid[y][x] = ''
 
     if (config.DEBUG == False):
-        system('cls')
+        os.system('cls')
     print(strings.caveawake)
     dead = False
     while(not dead):
@@ -32,7 +31,7 @@ while (True):
         movementoptions = movement.movementOptions(grid, x, y)
         movement.printMovements(movementoptions)
         selection = movement.prompt(movementoptions)
-        system('cls')
+        os.system('cls')
         newlocation = movement.performMove(grid, x, y, selection)
         x = newlocation.get('x')
         y = newlocation.get('y')

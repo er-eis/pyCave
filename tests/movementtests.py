@@ -37,5 +37,11 @@ def testMoveToPitValidation():
 def testMoveToStreamValidation():
     x = 2
     coords = movement.performMove(grid, x, y, '3')
+    assert(coords.get('x')) == 2
+    assert(coords.get('y')) == 2
+def testTakeStreamPathValidation():
+    x = 2
+    y = 2
+    coords = movement.performMove(grid, x, y, '5')
     assert(coords.get('x')) == 0
     assert(coords.get('y')) == 0

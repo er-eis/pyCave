@@ -1,5 +1,8 @@
+import os, sys
+sys.path.append(os.getcwd())
+
 import random as ran
-from . import strings
+from messages import strings
 
 
 def xyTuple(xmax, ymax):

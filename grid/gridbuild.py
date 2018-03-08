@@ -1,8 +1,6 @@
-from . import tools
-from . import movement
-from . import strings
-import numpy
-import math
+from . import tools, movement
+from messages import strings
+import numpy, math
 
 
 def generateGrid(length, difficulty):
