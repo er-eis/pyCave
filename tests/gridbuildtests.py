@@ -97,3 +97,18 @@ def testGenerateGridEveryOptionSuccessValidation():
     for i in range(4):
         for j in range(4):
             assert(type(gridbuild.generateGrid(i + 5, j))) == type(numpy.zeros((1,1), str))
+
+def testFillGridWithTilesOfEveryTypeSuccessValidation():
+    for i in range(100):
+        grid = numpy.zeros((4, 4), str)
+        grid = gridbuild.fillGrid(grid, 1)
+        grid = numpy.reshape(grid,(1, 16))[0] # flatten the array
+        grid = numpy.sort(grid) # sort it so expected chars are always in same position
+        assert(grid[15] == 'U') == True, '%s has an unknown char where there should be a \'U\'!' % str(grid)
+        assert(grid[14] == 'T') == True, '%s has an unknown char where there should be a \'T\'!' % str(grid)
+        assert(grid[13] == 'S') == True, '%s has an unknown char where there should be a \'S\'!' % str(grid)
+        assert(grid[9] == 'P') == True, '%s has an unknown char where there should be a \'P\'!' % str(grid)
+        assert(grid[6] == '1') == True, '%s has an unknown char where there should be a \'1\'!' % str(grid)
+        assert(grid[4] == '') == True, '%s has an unknown char where there should be a \'\'!' % str(grid)
+
+# placeTiles, validateGridHelper, findPlayerPosition to be added
