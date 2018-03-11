@@ -134,6 +134,28 @@ def testBoardIsPlayableSuccessValidation():
     y = 1
     assert(gridbuild.boardIsPlayable(grid, x, y, [], [])) == True, '%s is failing as a playable board' % str(grid)
     ##TODO: ADD MORE COMPLICATED TEST
+    ## TEST GRID
+    ## U    S   1   S   2   S   T
+    ## ''   S   ''  S   ''  S   ''
+    ## ''   ''  ''  S   1   S   2
+    grid = numpy.zeros((3, 7), str)
+    grid[0][1] = 'S'
+    grid[1][1] = 'S'
+    grid[0][2] = '1'
+    grid[0][3] = 'S'
+    grid[1][3] = 'S'
+    grid[2][3] = 'S'
+    grid[0][4] = '2'
+    grid[2][4] = '1'
+    grid[0][5] = 'S'
+    grid[1][5] = 'S'
+    grid[2][5] = 'S'
+    grid[2][6] = '2'
+    grid[0][6] = 'T'
+    x = 0
+    y = 0
+    print(grid)
+    # assert(gridbuild.boardIsPlayable(grid, x, y, [], [])) == True, '%s is failing as a playable board' % str(grid)
 
 def testBoardIsPlayableFailValidation():
     ## TEST GRID

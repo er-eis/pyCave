@@ -10,9 +10,8 @@ def xyTuple(xmax, ymax):
             'y': ran.randint(0, ymax - 1)}
 
 def findStreamEnd(grid, x, y, stream):
-    length = len(grid)
-    for i in range(length):
-        for j in range(length):
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
             if (grid[i][j] == stream and not (y == i and x == j)):
                 return {'x': j,
                         'y': i}
